@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public enum RotationDirection
 {
-    TOP, // 0 degrees
-    LEFT, // 90 degrees
-    BOTTOM, // 180 degrees
-    RIGHT // 270 degrees
+    TOP = 0, // 0 degrees
+    LEFT = 1, // 90 degrees
+    BOTTOM = 2, // 180 degrees
+    RIGHT = 3 // 270 degrees
 }
 
 public class Shape : MonoBehaviour
@@ -76,10 +76,18 @@ public class Shape : MonoBehaviour
         return rotation;
     }
 
-    public void InitialiseShape()
+    public void InitialiseShape(Action _checkIsLevelComplete, PuzzleShapeData _shapeData)
     {
+        checkIsLevelComplete = _checkIsLevelComplete;
+
         rectTransform = GetComponent<RectTransform>();
         completePosition = rectTransform.localPosition;
+
+        startRotation = (RotationDirection)_shapeData.startRotation;
+
+        alternateCorrectRotations = _shapeData.alternateCorrectRotations;
+
+        splitDirection = new Vector2(_shapeData.anchorPointX, _shapeData.anchorPointY);
 
         // Set rotation
         switch (startRotation)
