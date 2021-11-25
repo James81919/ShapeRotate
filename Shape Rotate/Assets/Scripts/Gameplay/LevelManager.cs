@@ -2,20 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-[System.Serializable]
-public struct ColorPalette
-{
-    public string paletteName;
-    public Color color1;
-    public Color color2;
-    public Color color3;
-    public Color color4;
-}
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public List<ColorPalette> colorPalettes;
+    public List<PuzzlePack> puzzlePacks;
     private int colorPalette = 0;
 
     public float splitOffset;
@@ -40,59 +32,30 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        // TEMP
         Invoke("CreateFirstPuzzle", Time.deltaTime);
     }
 
     // TEMP Function!!
     private void CreateFirstPuzzle()
     {
-        CreatePuzzle(1, 1);
+        CreatePuzzle(0, 0);
     }
 
     public void CreatePuzzle(int _packID, int _levelID)
     {
+        if (puzzlePacks.Count <= _packID)
+            return;
+
+        if (puzzlePacks[_packID].puzzles.Count <= _levelID)
+            return;
+
         nextButton.SetActive(false);
 
         packID = _packID;
         levelID = _levelID;
 
-        //PuzzleData puzzle = PuzzleLoader.LoadPuzzle(_packID, _levelID);
-        //if (puzzle == null)
-        //{
-            List<int> grid = new List<int>();
-            grid.Add(1);
-            grid.Add(1);
-            grid.Add(2);
-            grid.Add(2);
-
-            grid.Add(1);
-            grid.Add(3);
-            grid.Add(2);
-            grid.Add(2);
-
-            grid.Add(3);
-            grid.Add(3);
-            grid.Add(2);
-            grid.Add(4);
-
-            grid.Add(3);
-            grid.Add(4);
-            grid.Add(4);
-            grid.Add(4);
-
-            List<PuzzleShapeData> shapeData = new List<PuzzleShapeData>();
-            shapeData.Add(new PuzzleShapeData(new Vector2(-1, 1), RotationDirection.LEFT));
-            shapeData.Add(new PuzzleShapeData(new Vector2(1, 1), RotationDirection.RIGHT));
-            List<RotationDirection> shape3AltCorrectRotations = new List<RotationDirection>();
-            shape3AltCorrectRotations.Add(RotationDirection.BOTTOM);
-            shapeData.Add(new PuzzleShapeData(new Vector2(-1, -1), RotationDirection.BOTTOM, shape3AltCorrectRotations));
-            shapeData.Add(new PuzzleShapeData(new Vector2(1, -1), RotationDirection.LEFT));
-
-            //puzzle = new PuzzleData(0, 4, 4, grid, shapeData);
-        //}
-
-        PuzzleLoader.SavePuzzle(0, 0, 4, 4, grid, shapeData);
-        PuzzleData puzzle = PuzzleLoader.LoadPuzzle(0, 0);
+        PuzzleData puzzle = puzzlePacks[_packID].puzzles[_levelID];
 
         // Set tile size
         tileSize = (puzzle.width > puzzle.height) ? maxPuzzleSize / puzzle.width : maxPuzzleSize / puzzle.height;
@@ -105,8 +68,10 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < shapes.Count; i++)
         {
-            Destroy(shapes[i]);
+            Destroy(shapes[i].gameObject);
         }
+        shapes = new List<Shape>();
+        tiles = new List<GameObject>();
     }
 
     private void CreatePuzzleGrid(PuzzleData _puzzle)
@@ -122,6 +87,7 @@ public class LevelManager : MonoBehaviour
                 // Create grid
                 GameObject tile = Instantiate(tilePrefab, puzzleParent);
                 tile.GetComponent<RectTransform>().localPosition = new Vector3(posX, posY, 0);
+                tile.GetComponent<RectTransform>().sizeDelta = new Vector2(tileSize, tileSize);
                 tiles.Add(tile);
 
                 posX += tileSize;
@@ -200,13 +166,11 @@ public class LevelManager : MonoBehaviour
     }
     public void Button_RestartLevel()
     {
-        LevelLoader.Instance.LoadLevel("game");
+        SceneManager.LoadScene(0);
     }
     public void Button_NextLevel()
     {
-        LevelLoader.Instance.Fade(() => {
-            ClearPuzzle();
-            CreatePuzzle(packID, levelID + 1);
-        });
+        ClearPuzzle();
+        CreatePuzzle(packID, levelID + 1);
     }
 }

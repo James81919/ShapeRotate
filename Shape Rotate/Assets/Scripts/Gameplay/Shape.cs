@@ -85,7 +85,7 @@ public class Shape : MonoBehaviour
 
         startRotation = (RotationDirection)_shapeData.startRotation;
 
-        alternateCorrectRotations = PuzzleLoader.ConvertIntsToRotationDirections(_shapeData.alternateCorrectRotations);
+        alternateCorrectRotations = _shapeData.alternateCorrectRotations;
 
         splitDirection = new Vector2(_shapeData.anchorPointX, _shapeData.anchorPointY);
 

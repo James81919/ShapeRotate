@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PuzzlePack
+[CreateAssetMenu(fileName = "New Puzzle Pack", menuName = "Puzzle Customisation/Puzzle Pack")]
+public class PuzzlePack : ScriptableObject
 {
     public string packName;
     public List<PuzzleData> puzzles;
@@ -23,6 +23,7 @@ public class PuzzleData
     public List<PuzzleShapeData> shapes;
 
     // Other
+    [HideInInspector]
     public bool isCompleted;
 
     public PuzzleData(int _levelID, int _width, int _height, List<int> _grid, List<PuzzleShapeData> _shapes)
@@ -44,17 +45,17 @@ public class PuzzleShapeData
     public float anchorPointY;
 
     // Rotation variables
-    public int startRotation; // 0, 1, 2, 3
-    public List<int> alternateCorrectRotations;
+    public RotationDirection startRotation; // 0, 1, 2, 3
+    public List<RotationDirection> alternateCorrectRotations;
 
     public PuzzleShapeData(Vector2 _anchorPoint, RotationDirection _startRotation)
     {
         anchorPointX = _anchorPoint.x;
         anchorPointY = _anchorPoint.y;
 
-        startRotation = (int)_startRotation;
+        startRotation = _startRotation;
 
-        alternateCorrectRotations = new List<int>();
+        alternateCorrectRotations = new List<RotationDirection>();
     }
 
     public PuzzleShapeData(Vector2 _anchorPoint, RotationDirection _startRotation, List<RotationDirection> _alternateCorrectRotations)
@@ -62,8 +63,8 @@ public class PuzzleShapeData
         anchorPointX = _anchorPoint.x;
         anchorPointY = _anchorPoint.y;
 
-        startRotation = (int)_startRotation;
+        startRotation = _startRotation;
 
-        alternateCorrectRotations = PuzzleLoader.ConvertRotationDirectionsToInts(_alternateCorrectRotations);
+        alternateCorrectRotations = _alternateCorrectRotations;
     }
 }
