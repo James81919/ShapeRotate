@@ -68,7 +68,7 @@ public class Shape : MonoBehaviour
         switch (_rotationDirection)
         {
             case RotationDirection.TOP: rotation = 0; break;
-            case RotationDirection.RIGHT: rotation = -90; break;
+            case RotationDirection.RIGHT: rotation = 270; break;
             case RotationDirection.BOTTOM: rotation = 180; break;
             case RotationDirection.LEFT: rotation = 90; break;
         }

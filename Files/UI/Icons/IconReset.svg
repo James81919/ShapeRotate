@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29168"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="Reset.svg"
+   inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\UI\Icons\Reset.png"
+   inkscape:export-xdpi="128.57932"
+   inkscape:export-ydpi="128.57932"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:lockguides="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:zoom="0.64"
+     inkscape:cx="28.90625"
+     inkscape:cy="133.59375"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path12073" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path12055" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path12058" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g21402"
+       transform="matrix(1.0078221,0,0,0.78313798,-0.54794727,12.975308)"
+       inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\UI\Icons\g21402.png"
+       inkscape:export-xdpi="128.57932"
+       inkscape:export-ydpi="128.57932">
+      <circle
+         style="opacity:1;fill:none;stroke:#ffffff;stroke-width:22.51225055;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21178"
+         sodipodi:type="arc"
+         sodipodi:cx="-67.673477"
+         sodipodi:cy="-51.201492"
+         sodipodi:rx="42.825764"
+         sodipodi:ry="42.825764"
+         sodipodi:start="0"
+         sodipodi:end="3.1415927"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m -24.847713,-51.201492 a 42.825764,42.825764 0 0 1 -21.412883,37.088199 42.825764,42.825764 0 0 1 -42.825764,-10e-7 42.825764,42.825764 0 0 1 -21.41288,-37.088198"
+         transform="scale(-1)" />
+      <path
+         sodipodi:type="star"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:37.9227;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path21202"
+         inkscape:flatsided="false"
+         sodipodi:sides="3"
+         sodipodi:cx="101.6466"
+         sodipodi:cy="472.87766"
+         sodipodi:r1="74.115883"
+         sodipodi:r2="37.057941"
+         sodipodi:arg1="0.52359878"
+         sodipodi:arg2="1.5707963"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 165.83284,509.9356 -64.18624,0 -64.186239,0 32.093119,-55.58691 32.09312,-55.58692 32.09312,55.58691 z"
+         transform="matrix(0.29270767,0.18522209,-0.19803056,0.27377556,173.74782,-105.14245)"
+         inkscape:transform-center-y="0.8715753"
+         inkscape:transform-center-x="5.7245967" />
+    </g>
+    <g
+       id="g21580"
+       transform="matrix(-1.0078221,0,0,-0.78313798,139.07102,107.24612)"
+       inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\UI\Icons\g21402.png"
+       inkscape:export-xdpi="128.57932"
+       inkscape:export-ydpi="128.57932">
+      <circle
+         style="opacity:1;fill:none;stroke:#ffffff;stroke-width:22.5123;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21576"
+         sodipodi:type="arc"
+         sodipodi:cx="-67.673477"
+         sodipodi:cy="-51.201492"
+         sodipodi:rx="42.825764"
+         sodipodi:ry="42.825764"
+         sodipodi:start="0"
+         sodipodi:end="3.1415927"
+         sodipodi:open="true"
+         sodipodi:arc-type="arc"
+         d="m -24.847713,-51.201492 a 42.825764,42.825764 0 0 1 -21.412883,37.088199 42.825764,42.825764 0 0 1 -42.825764,-10e-7 42.825764,42.825764 0 0 1 -21.41288,-37.088198"
+         transform="scale(-1)" />
+      <path
+         sodipodi:type="star"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:37.9227;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path21578"
+         inkscape:flatsided="false"
+         sodipodi:sides="3"
+         sodipodi:cx="101.6466"
+         sodipodi:cy="472.87766"
+         sodipodi:r1="74.115883"
+         sodipodi:r2="37.057941"
+         sodipodi:arg1="0.52359878"
+         sodipodi:arg2="1.5707963"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 165.83284,509.9356 -64.18624,0 -64.186239,0 32.093119,-55.58691 32.09312,-55.58692 32.09312,55.58691 z"
+         transform="matrix(0.29270767,0.18522209,-0.19803056,0.27377556,173.74782,-105.14245)"
+         inkscape:transform-center-y="0.8715753"
+         inkscape:transform-center-x="5.7245967" />
+    </g>
+  </g>
+</svg>

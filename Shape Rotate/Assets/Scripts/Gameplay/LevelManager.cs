@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class LevelManager : MonoBehaviour
     [Header("UI")]
     public Transform puzzleParent;
     public GameObject nextButton;
+    public TextMeshProUGUI levelNumberText;
+    public GridIconManager gridIconManager;
+    public TextMeshProUGUI gridSizeText;
 
     [HideInInspector] public bool isLevelComplete;
 
@@ -28,22 +32,29 @@ public class LevelManager : MonoBehaviour
 
     private float maxPuzzleSize = 300;
 
-    private int packID, levelID;
+    [HideInInspector] public int packID, levelID;
 
-    private void Start()
+    public void GeneratePackData()
     {
-        // TEMP
-        Invoke("CreateFirstPuzzle", Time.deltaTime);
-    }
-
-    // TEMP Function!!
-    private void CreateFirstPuzzle()
-    {
-        CreatePuzzle(0, 0);
+        if (PuzzleLoader.LoadPuzzlePacks() == null)
+        {
+            List<PuzzlePackSaveData> packs = new List<PuzzlePackSaveData>();
+            for (int i = 0; i < puzzlePacks.Count; i++)
+            {
+                PuzzlePackSaveData saveData;
+                saveData.currentLevel = 0;
+                saveData.isUnlocked = !puzzlePacks[i].isLocked;
+                packs.Add(saveData);
+            }
+            
+            PuzzleLoader.SavePuzzlePacks(packs);
+        }
     }
 
     public void CreatePuzzle(int _packID, int _levelID)
     {
+        ClearPuzzle();
+
         if (puzzlePacks.Count <= _packID)
             return;
 
@@ -55,14 +66,21 @@ public class LevelManager : MonoBehaviour
         packID = _packID;
         levelID = _levelID;
 
+        levelNumberText.text = (_levelID + 1).ToString();
+
         PuzzleData puzzle = puzzlePacks[_packID].puzzles[_levelID];
 
         // Set tile size
         tileSize = (puzzle.width > puzzle.height) ? maxPuzzleSize / puzzle.width : maxPuzzleSize / puzzle.height;
 
+        // Update grid size UI text
+        gridSizeText.text = puzzle.width + " x " + puzzle.height;
+
         CreatePuzzleGrid(puzzle);
         CreateShapes(puzzle);
         SplitPuzzle();
+
+        gridIconManager.SetTileIcon(puzzle);
     }
     public void ClearPuzzle()
     {
@@ -100,26 +118,59 @@ public class LevelManager : MonoBehaviour
         // Join tiles into shapes
         for (int p = 0; p < _puzzle.shapes.Count; p++)
         {
-            GameObject shape = Instantiate(shapeParentPrefab, puzzleParent);
 
-            // Set shape offset position
-            shape.GetComponent<RectTransform>().localPosition = new Vector3(tileSize * _puzzle.shapes[p].anchorPointX, tileSize * _puzzle.shapes[p].anchorPointY, 0);
-
-            // Find all tiles 'p' number value and make them children of shape
+            // Find all tiles with 'p' number value
+            List<GameObject> shapeTiles = new List<GameObject>();
             for (int t = 0; t < tiles.Count; t++)
             {
                 if (_puzzle.grid[t] == p + 1)
-                {
-                    // Set tile is child of shape
-                    tiles[t].transform.SetParent(shape.transform);
-                    ChangeTileColour(tiles[t], p + 1);
-                }
+                    shapeTiles.Add(tiles[t]);
+            }
+
+            // Create shape parent
+            GameObject shape = Instantiate(shapeParentPrefab, puzzleParent);
+
+            // Get minimum and maximum x and y values across all the tiles in shape
+            float minX = shapeTiles[0].GetComponent<RectTransform>().anchoredPosition.x, maxX = shapeTiles[0].GetComponent<RectTransform>().anchoredPosition.x;
+            float minY = shapeTiles[0].GetComponent<RectTransform>().anchoredPosition.y, maxY = shapeTiles[0].GetComponent<RectTransform>().anchoredPosition.y;
+            for (int t = 0; t < shapeTiles.Count; t++)
+            {
+                // Checks if this tile has a smaller x value
+                if (shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.x < minX)
+                    minX = shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.x;
+
+                // Checks if this tile has a larger x value
+                if (shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.x > maxX)
+                    maxX = shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.x;
+
+                // Checks if this tile has a smaller y value
+                if (shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.y < minY)
+                    minY = shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.y;
+
+                // Checks if this tile has a larger y value
+                if (shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.y > maxY)
+                    maxY = shapeTiles[t].GetComponent<RectTransform>().anchoredPosition.y;
+            }
+
+            // Set shape offset position
+            shape.GetComponent<RectTransform>().localPosition = new Vector3((minX + maxX) / 2, (minY + maxY) / 2, 0);
+
+            // Make all shape tiles children of shape parent
+            for (int t = 0; t < shapeTiles.Count; t++)
+            {
+                // Set tile is child of shape
+                shapeTiles[t].transform.SetParent(shape.transform);
+                ChangeTileColour(shapeTiles[t], p + 1);
             }
 
             Shape s = shape.GetComponent<Shape>();
             s.InitialiseShape(CheckIsLevelComplete, _puzzle.shapes[p]);
             shapes.Add(s);
         }
+    }
+    private void CreateShapeParent()
+    {
+
     }
     private void ChangeTileColour(GameObject _tile, int _value)
     {
@@ -147,6 +198,12 @@ public class LevelManager : MonoBehaviour
         {
             shapes[i].CompletePiece();
         }
+
+        // Set level is completed
+        PuzzlePackSaveData packData = PuzzleLoader.LoadPuzzlePackSaveData(packID);
+        packData.isUnlocked = true;
+        packData.currentLevel = levelID + 1;
+        PuzzleLoader.SavePuzzlePackData(packID, packData);
     }
 
     public void CheckIsLevelComplete()

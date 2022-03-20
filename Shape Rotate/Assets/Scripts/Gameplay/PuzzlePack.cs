@@ -6,16 +6,14 @@ using UnityEngine;
 public class PuzzlePack : ScriptableObject
 {
     public string packName;
+    [Min(0)] public int unlockCost;
+    public bool isLocked;
     public List<PuzzleData> puzzles;
 }
 
 [System.Serializable]
 public class PuzzleData
-{
-    // Level
-    public int levelID;
-    //public int packID;
-    
+{    
     // Grid size
     public int width;
     public int height;
@@ -26,9 +24,8 @@ public class PuzzleData
     [HideInInspector]
     public bool isCompleted;
 
-    public PuzzleData(int _levelID, int _width, int _height, List<int> _grid, List<PuzzleShapeData> _shapes)
+    public PuzzleData(int _width, int _height, List<int> _grid, List<PuzzleShapeData> _shapes)
     {
-        levelID = _levelID;
         width = _width;
         height = _height;
         grid = _grid;

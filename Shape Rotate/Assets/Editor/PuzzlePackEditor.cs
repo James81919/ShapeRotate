@@ -13,6 +13,8 @@ public class PuzzlePackEditor : Editor
     List<int> shapesAlternateCorrectRotations = new List<int>();
     List<bool> isShapeElementTabsOpen = new List<bool>();
 
+    int newPuzzleLevelID = 0;
+
     PuzzlePack puzzlePack;
 
     bool isShapeListTabOpen = false;
@@ -146,12 +148,23 @@ public class PuzzlePackEditor : Editor
                 {
                     // Make text colour green
                     EditorGUILayout.LabelField("Puzzle doesn't exist");
-                }
 
-                EditorGUILayout.Space();
-                if (GUILayout.Button("Add Puzzle"))
-                {
-                    AddPuzzle();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.BeginHorizontal();
+                    newPuzzleLevelID = EditorGUILayout.IntSlider(newPuzzleLevelID, 1, puzzlePack.puzzles.Count);
+                    if (GUILayout.Button("Add Puzzle By Level Number"))
+                    {
+                        AddPuzzle(newPuzzleLevelID - 1);
+                        newPuzzleLevelID++;
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+
+                    EditorGUILayout.Space();
+                    if (GUILayout.Button("Add Puzzle"))
+                    {
+                        AddPuzzle();
+                    }
                 }
             }
         }
@@ -190,18 +203,36 @@ public class PuzzlePackEditor : Editor
         }
     }
 
-    private void AddPuzzle()
+    private void AddPuzzle(int _levelID = -1)
     {
         if (puzzlePack == null)
             return;
 
-        // Creat and add puzzle to puzzlepack
-        PuzzleData puzzle = new PuzzleData(puzzlePack.puzzles.Count + 1, gridWidth, gridHeight, gridList, shapesList);
-        puzzlePack.puzzles.Add(puzzle);
+        // Create and add puzzle to puzzlepack
+
+        List<PuzzleShapeData> newShapesList = new List<PuzzleShapeData>();
+        for (int i = 0; i < shapesList.Count; i++)
+        {
+            List<RotationDirection> correctRotations = new List<RotationDirection>();
+            for (int r = 0; r < shapesList[i].alternateCorrectRotations.Count; r++)
+                correctRotations.Add(shapesList[i].alternateCorrectRotations[r]);
+
+            PuzzleShapeData s = new PuzzleShapeData(
+                new Vector2(shapesList[i].anchorPointX, shapesList[i].anchorPointY),
+                shapesList[i].startRotation,
+                correctRotations);
+
+            newShapesList.Add(s);
+        }
+
+        PuzzleData puzzle = new PuzzleData(gridWidth, gridHeight, gridList, newShapesList);
+        if (_levelID >= 0)
+            puzzlePack.puzzles.Insert(_levelID, puzzle);
+        else
+            puzzlePack.puzzles.Add(puzzle);
 
         // Reset local variables
         gridList = new List<int>();
-        shapesList = new List<PuzzleShapeData>();
     }
 
     private bool DoesPuzzleExist()
