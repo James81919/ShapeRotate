@@ -118,7 +118,7 @@ public class PuzzlePackEditor : Editor
 
                     while (gridList.Count <= index)
                     {
-                        gridList.Add(1);
+                        gridList.Add(0);
                     }
 
                     SetTileColor(index);
@@ -187,7 +187,7 @@ public class PuzzlePackEditor : Editor
         }
         else
         {
-            gridList[_gridIndex] = 1;
+            gridList[_gridIndex] = 0;
         }
     }
 
@@ -199,7 +199,7 @@ public class PuzzlePackEditor : Editor
             case 2: GUI.backgroundColor = new Color(0.8039216f, 0.509804f, 0); break; // Set colour yellow
             case 3: GUI.backgroundColor = new Color(0.2509804f, 0.7568628f, 0); break; // Set colour green
             case 4: GUI.backgroundColor = new Color(0.8117648f, 0, 0); break; // Set colour red
-            default: GUI.backgroundColor = new Color(0.8117648f, 0, 0); break; // Set colour red (by default)
+            default: GUI.backgroundColor = new Color(0.9f, 0.9f, 0.9f); break; // Set colour grey (by default)
         }
     }
 

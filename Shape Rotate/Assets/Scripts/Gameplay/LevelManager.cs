@@ -118,13 +118,18 @@ public class LevelManager : MonoBehaviour
         // Join tiles into shapes
         for (int p = 0; p < _puzzle.shapes.Count; p++)
         {
-
             // Find all tiles with 'p' number value
             List<GameObject> shapeTiles = new List<GameObject>();
             for (int t = 0; t < tiles.Count; t++)
             {
-                if (_puzzle.grid[t] == p + 1)
+                if (_puzzle.grid[t] == 0)
+                {
+                    Destroy(tiles[t]);
+                }
+                else if (_puzzle.grid[t] == p + 1)
+                {
                     shapeTiles.Add(tiles[t]);
+                }
             }
 
             // Create shape parent
@@ -167,10 +172,6 @@ public class LevelManager : MonoBehaviour
             s.InitialiseShape(CheckIsLevelComplete, _puzzle.shapes[p]);
             shapes.Add(s);
         }
-    }
-    private void CreateShapeParent()
-    {
-
     }
     private void ChangeTileColour(GameObject _tile, int _value)
     {
