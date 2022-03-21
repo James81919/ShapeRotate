@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\Sprites\Coin.png"
+   inkscape:export-xdpi="266.56931"
+   inkscape:export-ydpi="266.56931"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="Coin.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.2810466"
+     inkscape:cx="37.85967"
+     inkscape:cy="218.18098"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#ed8e00;fill-opacity:1;stroke:#ffc20b;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2964"
+       cx="34.77747"
+       cy="44.405426"
+       r="21.892906" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffc20b;fill-opacity:1;stroke:none;stroke-width:18.8976;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path35873"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="211.95872"
+       sodipodi:cy="202.02316"
+       sodipodi:r1="59.820026"
+       sodipodi:r2="29.910013"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.9424778"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 211.95873,142.20314 17.58066,35.62231 39.31156,5.71231 -28.44611,27.72811 6.71521,39.15271 -35.16132,-18.4854 -35.16134,18.4854 6.71522,-39.15271 -28.44611,-27.72811 39.31156,-5.71231 z"
+       transform="matrix(0.29767228,0,0,0.29767228,-28.316768,-15.683172)"
+       inkscape:transform-center-y="-1.7003979" />
+  </g>
+</svg>

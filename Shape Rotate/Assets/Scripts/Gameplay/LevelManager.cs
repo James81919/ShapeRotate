@@ -201,10 +201,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // Set level is completed
-        PuzzlePackSaveData packData = PuzzleLoader.LoadPuzzlePackSaveData(packID);
-        packData.isUnlocked = true;
-        packData.currentLevel = levelID + 1;
-        PuzzleLoader.SavePuzzlePackData(packID, packData);
+        PuzzleLoader.UpdateCompletedLevels(packID, levelID);
     }
 
     public void CheckIsLevelComplete()
