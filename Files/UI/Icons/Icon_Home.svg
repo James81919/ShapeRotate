@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="Icon_Home.svg"
+   inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\UI\Icons\Icon_Home.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4"
+     inkscape:cx="412.125"
+     inkscape:cy="333.375"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect868"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:18.8976"
+       d="M 342.98828 295.07031 C 333.47419 295.07031 325.81445 302.73004 325.81445 312.24414 L 325.81445 419.96875 C 325.81445 429.48285 333.47419 437.14258 342.98828 437.14258 L 376.35938 437.14258 L 376.35938 410.34375 C 376.35938 398.37814 385.49756 388.74414 396.84961 388.74414 C 408.20166 388.74414 417.3418 398.37814 417.3418 410.34375 L 417.3418 437.14258 L 450.71289 437.14258 C 460.22699 437.14258 467.88672 429.48285 467.88672 419.96875 L 467.88672 312.24414 C 467.88672 302.73004 460.22699 295.07031 450.71289 295.07031 L 342.98828 295.07031 z "
+       transform="scale(0.26458333)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:18.8976"
+       id="path7346"
+       inkscape:flatsided="false"
+       sodipodi:sides="3"
+       sodipodi:cx="296.63245"
+       sodipodi:cy="182.66315"
+       sodipodi:r1="112.42977"
+       sodipodi:r2="75.32795"
+       sodipodi:arg1="0.52359878"
+       sodipodi:arg2="1.5707963"
+       inkscape:rounded="0.228"
+       inkscape:randomized="0"
+       d="m 393.99948,238.87803 c -11.31167,19.5924 -74.74368,19.11307 -97.36703,19.11307 -22.62336,0 -86.05536,0.47933 -97.36704,-19.11307 -11.31168,-19.5924 20.81944,-74.28646 32.13112,-93.87886 11.31168,-19.5924 42.61256,-74.765794 65.23592,-74.765794 22.62335,-1e-6 53.92424,55.173394 65.23591,74.765794 11.31168,19.5924 43.4428,74.28646 32.13112,93.87886 z"
+       transform="matrix(0.26458333,0,0,0.18684172,26.516,46.363697)"
+       inkscape:transform-center-y="-2.6291308" />
+  </g>
+</svg>

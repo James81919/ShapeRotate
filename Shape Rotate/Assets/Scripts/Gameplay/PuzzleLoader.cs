@@ -112,4 +112,12 @@ public static class PuzzleLoader
 
         }
     }
+
+    public static void SetPackUnlocked(int _packID, bool _isUnlocked)
+    {
+        PuzzlePackSaveData packData = LoadPuzzlePackSaveData(_packID);
+        packData.isUnlocked = _isUnlocked;
+
+        SavePuzzlePackData(_packID, packData);
+    }
 }

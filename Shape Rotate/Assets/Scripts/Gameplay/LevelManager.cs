@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI levelNumberText;
     public GridIconManager gridIconManager;
     public TextMeshProUGUI gridSizeText;
+    public LevelCompletePopup levelCompletePopup;
 
     [HideInInspector] public bool isLevelComplete;
 
@@ -199,9 +200,6 @@ public class LevelManager : MonoBehaviour
         {
             shapes[i].CompletePiece();
         }
-
-        // Set level is completed
-        PuzzleLoader.UpdateCompletedLevels(packID, levelID);
     }
 
     public void CheckIsLevelComplete()
@@ -217,15 +215,9 @@ public class LevelManager : MonoBehaviour
 
         isLevelComplete = true;
         CombinePuzzle();
-        nextButton.SetActive(true);
-    }
-    public void Button_RestartLevel()
-    {
-        SceneManager.LoadScene(0);
-    }
-    public void Button_NextLevel()
-    {
-        ClearPuzzle();
-        CreatePuzzle(packID, levelID + 1);
+        levelCompletePopup.Appear(packID, levelID);
+
+        // Set level is completed
+        PuzzleLoader.UpdateCompletedLevels(packID, levelID);
     }
 }
