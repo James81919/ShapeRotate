@@ -16,7 +16,7 @@ public class PackButton : MonoBehaviour
     public GameObject buyPackGO;
     public TextMeshProUGUI buyPackText;
 
-    public void SetupButton(GameManager _gameManager, LevelManager _levelManager, int _packID)
+    public void SetupButton(GameManager _gameManager, LevelManager _levelManager, BuyPackPopup _buyPackPopup, int _packID)
     {
         PuzzlePack puzzlePack = _levelManager.puzzlePacks[_packID];
 
@@ -34,6 +34,8 @@ public class PackButton : MonoBehaviour
         {
             buyPackGO.SetActive(true);
             levelCountGO.SetActive(false);
+
+            GetComponent<Button>().onClick.AddListener(() => _buyPackPopup.Open(_packID));
         }
     }
 }

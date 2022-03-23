@@ -104,12 +104,20 @@ public static class PuzzleLoader
 
         if (packData.isUnlocked)
         {
-            if (_completedLevel == LoadPuzzlePackSaveData(_packID).currentLevel)
+            if (_completedLevel == packData.currentLevel)
             {
                 packData.currentLevel++;
                 SavePuzzlePackData(_packID, packData);
             }
 
         }
+    }
+
+    public static void SetPackUnlocked(int _packID, bool _isUnlocked)
+    {
+        PuzzlePackSaveData packData = LoadPuzzlePackSaveData(_packID);
+        packData.isUnlocked = _isUnlocked;
+
+        SavePuzzlePackData(_packID, packData);
     }
 }

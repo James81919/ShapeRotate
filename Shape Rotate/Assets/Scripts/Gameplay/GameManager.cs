@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI - Pack Select")]
     public RectTransform buttonContent_packSelect;
+    public TextMeshProUGUI coinAmountText;
+    public BuyPackPopup buyPackPopup;
 
     [Header("UI - Puzzle Select")]
     public TextMeshProUGUI puzzleSelectTitleText;
@@ -59,11 +61,17 @@ public class GameManager : MonoBehaviour
         puzzleSelectionScreen.SetActive(false);
         puzzleScreen.SetActive(false);
 
+        UpdatePackScreen();
+    }
+    public void UpdatePackScreen()
+    {
         // Destroy current pack buttons
         DestroyPackButtons();
 
         // Generate pack buttons
         GeneratePackButtons();
+
+        coinAmountText.text = CoinManager.GetCoinAmount() + "<sprite=0>";
     }
 
     public void OpenLevelScreen()
@@ -109,7 +117,7 @@ public class GameManager : MonoBehaviour
             buttonContent_packSelect.sizeDelta += new Vector2(0, packButton_buttonOffset);
 
             PackButton newButton = Instantiate(packButtonPrefab, buttonContent_packSelect).GetComponent<PackButton>();
-            newButton.SetupButton(this, levelManager, i);
+            newButton.SetupButton(this, levelManager, buyPackPopup, i);
             newButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, y);
             newButton.gameObject.name = "PackButton_" + levelManager.puzzlePacks[i].packName;
             y -= packButton_buttonOffset;
