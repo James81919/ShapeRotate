@@ -19,10 +19,12 @@ public class LevelManager : MonoBehaviour
 
     [Header("UI")]
     public Transform puzzleParent;
-    public GameObject nextButton;
     public TextMeshProUGUI levelNumberText;
     public GridIconManager gridIconManager;
     public TextMeshProUGUI gridSizeText;
+    public GameObject hintsCounter;
+    public TextMeshProUGUI hintCounterText;
+    public BuyHintsPopup buyHintsPopup;
     public LevelCompletePopup levelCompletePopup;
 
     [HideInInspector] public bool isLevelComplete;
@@ -62,8 +64,6 @@ public class LevelManager : MonoBehaviour
         if (puzzlePacks[_packID].puzzles.Count <= _levelID)
             return;
 
-        nextButton.SetActive(false);
-
         packID = _packID;
         levelID = _levelID;
 
@@ -82,6 +82,7 @@ public class LevelManager : MonoBehaviour
         SplitPuzzle();
 
         gridIconManager.SetTileIcon(puzzle);
+        UpdateHintCounter();
     }
     public void ClearPuzzle()
     {
@@ -219,5 +220,35 @@ public class LevelManager : MonoBehaviour
 
         // Set level is completed
         PuzzleLoader.UpdateCompletedLevels(packID, levelID);
+    }
+
+
+    public void UpdateHintCounter()
+    {
+        int hintsRemaining = HintManager.GetHintsRemaining();
+        if (hintsRemaining > 0)
+        {
+            hintsCounter.SetActive(true);
+            hintCounterText.text = hintsRemaining.ToString();
+        }
+        else
+        {
+            hintsCounter.SetActive(false);
+        }
+    }
+
+    // UI Buttons
+    public void Button_Hint()
+    {
+        if (HintManager.CanUseHint())
+        {
+            HintManager.UseHint(shapes);
+            UpdateHintCounter();
+        }
+        else
+        {
+            // Make "buy hints popup" appear
+            buyHintsPopup.Appear();
+        }
     }
 }
