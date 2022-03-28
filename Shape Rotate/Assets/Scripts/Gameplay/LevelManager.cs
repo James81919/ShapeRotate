@@ -245,6 +245,14 @@ public class LevelManager : MonoBehaviour
             HintManager.UseHint(shapes);
             UpdateHintCounter();
         }
+        else if (AdMediationManager.Instance.CanWatchAd())
+        {
+            AdMediationManager.Instance.ShowRewardBasedAd(() =>
+            {
+                HintManager.UseHint(shapes);
+                UpdateHintCounter();
+            });
+        }
         else
         {
             // Make "buy hints popup" appear
