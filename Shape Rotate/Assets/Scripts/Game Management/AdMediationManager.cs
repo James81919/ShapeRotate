@@ -5,7 +5,7 @@ using System;
 using AppodealAds.Unity.Api;
 using AppodealAds.Unity.Common;
 
-public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
+public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener, IInterstitialAdListener
 {
     public static AdMediationManager Instance { get; private set; }
 
@@ -13,10 +13,11 @@ public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
     AdRewardFunc adRewardFunc;
 
     public bool isTesting;
-    [Tooltip("Ad delay in minutes")]
-    public float adMinTimeDelay;
 
-    private bool isAdReady;
+    [Tooltip("The delay between each interstitial ad (in seconds)")]
+    public float interstitialAdDelay;
+
+    private bool isInterstitialAdReady;
 
 #if UNITY_ANDROID
     private string appKey_Android = "6633505ef46ecb5855b43c6184b0c56ba6e463ce49fdd9bd";
@@ -31,9 +32,9 @@ public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            isAdReady = true;
-
             InitialiseAds();
+
+            DisableInterstititalAdReady();
         }
         else
         {
@@ -46,40 +47,59 @@ public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
         Appodeal.disableLocationPermissionCheck();
         Appodeal.setTesting(isTesting);
 #if UNITY_ANDROID
-        Appodeal.initialize(appKey_Android, Appodeal.REWARDED_VIDEO);
+        Appodeal.initialize(appKey_Android, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL);
 #elif UNITY_IPHONE
         Appodeal.initialize(appKey_iOS, Appodeal.REWARDED_VIDEO);
 #endif
         Appodeal.setRewardedVideoCallbacks(this);
     }
 
-    public void EnableAdReady()
-    {
-        isAdReady = true;
-    }
-
     public void DestroyAd()
     {
-        Appodeal.destroy(Appodeal.REWARDED_VIDEO);
+        Appodeal.destroy(Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL);
     }
-
-    public bool CanWatchAd()
+    
+    // Rewarded Video Ad Functions
+    public bool CanWatchRewardedVideoAd()
     {
-        if (Appodeal.isLoaded(Appodeal.REWARDED_VIDEO) && isAdReady)
-            return true;
-
-        return false;
+        return Appodeal.isLoaded(Appodeal.REWARDED_VIDEO);
     }
 
-    public void ShowRewardBasedAd(AdRewardFunc _onAdReward)
+    public void ShowRewardedVideoAd(AdRewardFunc _onAdReward)
     {
         adRewardFunc = _onAdReward;
 
-        if (CanWatchAd())
+        if (CanWatchRewardedVideoAd())
             Appodeal.show(Appodeal.REWARDED_VIDEO);
     }
 
-#region Appodeal Rewarded Video Ad Listeners
+    // Interstitial Ad Functions
+    public void EnableInterstitialAdReady()
+    {
+        isInterstitialAdReady = true;
+    }
+
+    public void DisableInterstititalAdReady()
+    {
+        isInterstitialAdReady = false;
+        Invoke("EnableInterstitialAdReady", interstitialAdDelay * 60);
+    }
+
+    public bool CanInterstitialAdAppear()
+    {
+        return Appodeal.isLoaded(Appodeal.INTERSTITIAL) && isInterstitialAdReady;
+    }
+
+    public void ShowInterstitialAd()
+    {
+        if (CanInterstitialAdAppear())
+        {
+            Appodeal.show(Appodeal.INTERSTITIAL);
+            DisableInterstititalAdReady();
+        }
+    }
+
+    #region Appodeal Rewarded Video Ad Listeners
     public void onRewardedVideoLoaded(bool precache)
     {
 
@@ -111,8 +131,6 @@ public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
         {
             // Reward player
             adRewardFunc();
-            isAdReady = false;
-            Invoke("EnableAdReady", adMinTimeDelay * 60);
         }
     }
 
@@ -125,5 +143,42 @@ public class AdMediationManager : MonoBehaviour, IRewardedVideoAdListener
     {
 
     }
-#endregion
+    #endregion
+
+    #region Appodeal Interstitial Ad Listeners
+    public void onInterstitialLoaded(bool isPrecache)
+    {
+        
+    }
+
+    public void onInterstitialFailedToLoad()
+    {
+        
+    }
+
+    public void onInterstitialShowFailed()
+    {
+        
+    }
+
+    public void onInterstitialShown()
+    {
+        
+    }
+
+    public void onInterstitialClosed()
+    {
+        
+    }
+
+    public void onInterstitialClicked()
+    {
+        
+    }
+
+    public void onInterstitialExpired()
+    {
+        
+    }
+    #endregion
 }

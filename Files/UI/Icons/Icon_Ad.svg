@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="Icon_Ad.svg"
+   inkscape:export-filename="E:\Files\VentureGames\Projects\Unity\ShapeRotateGame\ShapeRotate\Files\UI\Icons\Icon_Ad.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.5620932"
+     inkscape:cx="452.55966"
+     inkscape:cy="612.19476"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect874"
+       style="fill:#ffffff;stroke-width:18.8976"
+       d="M 317.45898 488.66211 C 302.62795 488.66211 290.6875 500.60255 290.6875 515.43359 L 290.6875 607.08594 C 290.6875 621.91698 302.62795 633.85742 317.45898 633.85742 L 476.24219 633.85742 C 491.07323 633.85742 503.01367 621.91698 503.01367 607.08594 L 503.01367 515.43359 C 503.01367 500.60255 491.07323 488.66211 476.24219 488.66211 L 317.45898 488.66211 z M 372.63672 523.09766 C 381.95036 523.32214 397.83855 532.64484 404.16406 536.29688 C 411.66096 540.62521 432.77344 552.60309 432.77344 561.25977 C 432.77344 569.91644 411.66096 581.89432 404.16406 586.22266 C 396.66716 590.55099 375.73909 602.84592 368.24219 598.51758 C 360.74529 594.18924 360.92773 569.91644 360.92773 561.25977 C 360.92773 552.60309 360.74529 528.33224 368.24219 524.00391 C 369.41358 523.3276 370.91197 523.05609 372.63672 523.09766 z "
+       transform="scale(0.26458333)" />
+  </g>
+</svg>

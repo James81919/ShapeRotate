@@ -237,26 +237,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void UseHint()
+    {
+        HintManager.UseHint(shapes);
+        UpdateHintCounter();
+    }
+
     // UI Buttons
     public void Button_Hint()
     {
         if (HintManager.CanUseHint())
         {
-            HintManager.UseHint(shapes);
-            UpdateHintCounter();
-        }
-        else if (AdMediationManager.Instance.CanWatchAd())
-        {
-            AdMediationManager.Instance.ShowRewardBasedAd(() =>
-            {
-                HintManager.UseHint(shapes);
-                UpdateHintCounter();
-            });
+            UseHint();
         }
         else
         {
             // Make "buy hints popup" appear
-            buyHintsPopup.Appear();
+            buyHintsPopup.Open();
         }
     }
 }
