@@ -50,12 +50,24 @@ public class LevelCompletePopup : MonoBehaviour
     }
 
     // UI Buttons
-    public void Button_NextLevel()
+    private void GoToNextLevel()
     {
         levelManager.ClearPuzzle();
         levelManager.CreatePuzzle(packID, levelID + 1);
 
         Disappear();
+    }
+    public void Button_NextLevel()
+    {
+        if (AdMediationManager.Instance.CanInterstitialAdAppear())
+        {
+            AdMediationManager.Instance.ShowInterstitialAd();
+            GoToNextLevel();
+        }
+        else
+        {
+            GoToNextLevel();
+        }
     }
     public void Button_Home()
     {
