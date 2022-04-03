@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuyHintsPopup : MonoBehaviour
+public class BuyHintsPopup : Popup
 {
-    [Header("UI")]
-    [SerializeField] private Canvas popupCanvas;
     [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private Button watchAdButton;
@@ -17,25 +15,22 @@ public class BuyHintsPopup : MonoBehaviour
 
     private Timer rewardedVideoAdTimer;
 
-    private void Start()
+    public override void OnStart()
     {
-        popupCanvas.enabled = false;
-
+        base.OnStart();
         rewardedVideoAdTimer = new Timer("rewardedVideoAdDelay", System.TimeSpan.FromMinutes(videoAdDelay));
     }
 
-    public void Open()
+    public override void OpenPopup()
     {
         watchAdButton.interactable = AdMediationManager.Instance.CanWatchRewardedVideoAd() && rewardedVideoAdTimer.HasTimerEnded();
-
-        popupCanvas.enabled = true;
+        base.OpenPopup();
     }
 
-    public void Close()
+    public override void ClosePopup()
     {
-        popupCanvas.enabled = false;
+        base.ClosePopup();
     }
-
 
     // UI Buttons
     public void Button_BuyHints_5()
@@ -62,7 +57,7 @@ public class BuyHintsPopup : MonoBehaviour
         {
             AdMediationManager.Instance.ShowRewardedVideoAd(() =>
             {
-                Close();
+                ClosePopup();
                 HintManager.AddHints(1);
                 levelManager.UseHint();
                 rewardedVideoAdTimer.StartTimer();
