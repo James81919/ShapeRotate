@@ -28,7 +28,7 @@ public static class PuzzleLoader
         }
         else
         {
-            Debug.LogError("Puzzle Packs file not found in " + path);
+            Debug.LogWarning("Puzzle Packs file not found in " + path);
             return null;
         }
     }
@@ -90,6 +90,12 @@ public static class PuzzleLoader
 
         // Save puzzle packs list with added puzzle pack
         SavePuzzlePacks(packs);
+    }
+
+    public static void DeletePackData()
+    {
+        string path = Application.persistentDataPath + "/packs.ldf";
+        File.Delete(path);
     }
 
     public static bool IsLevelUnlocked(int _packID, int _levelID)

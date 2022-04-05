@@ -253,7 +253,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             // Make "buy hints popup" appear
-            buyHintsPopup.Open();
+            buyHintsPopup.OpenPopup();
         }
     }
 }

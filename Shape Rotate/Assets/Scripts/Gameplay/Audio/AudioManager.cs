@@ -147,6 +147,8 @@ public class AudioManager : MonoBehaviour
         {
             sfxList[i].source.volume = sfxList[i].volume * sfxMasterVolume;
         }
+
+        PlayerPrefs.SetFloat("sfxMasterVolume", sfxMasterVolume);
     }
     public void SetMusicVolume(float _volume)
     {
@@ -154,6 +156,8 @@ public class AudioManager : MonoBehaviour
 
         musicSource.volume = musicMasterVolume;
         musicSource2.volume = musicMasterVolume;
+
+        PlayerPrefs.SetFloat("musicMasterVolume", musicMasterVolume);
     }
     public void SetSFXMute(bool _b)
     {
@@ -196,6 +200,16 @@ public class AudioManager : MonoBehaviour
     public bool IsMusicMuted()
     {
         return PlayerPrefs.GetInt("MusicMuted") == 1 ? true : false;
+    }
+    public float GetMusicVolume()
+    {
+        musicMasterVolume = PlayerPrefs.GetFloat("musicMasterVolume", musicMasterVolume);
+        return musicMasterVolume;
+    }
+    public float GetSoundVolume()
+    {
+        sfxMasterVolume = PlayerPrefs.GetFloat("sfxMasterVolume", sfxMasterVolume);
+        return sfxMasterVolume;
     }
 
     private IEnumerator ChangeMusic(AudioSource _activeSource, Music _music)
