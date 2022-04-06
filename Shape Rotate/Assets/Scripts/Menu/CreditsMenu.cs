@@ -18,4 +18,14 @@ public class CreditsMenu : Popup
     {
         Application.OpenURL("https://twitter.com/games_venture?s=20");
     }
+
+    public void Button_VentureGamesWebsite()
+    {
+        Application.OpenURL("http://venturegames.net/");
+    }
+
+    public void Button_SentientSoundsWebsite()
+    {
+        Application.OpenURL("https://www.sentientsounds.co.nz/");
+    }
 }
