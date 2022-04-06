@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI hintCounterText;
     public BuyHintsPopup buyHintsPopup;
     public LevelCompletePopup levelCompletePopup;
+    public RateGamePopup rateGamePopup;
 
     [HideInInspector] public bool isLevelComplete;
 
@@ -217,7 +218,8 @@ public class LevelManager : MonoBehaviour
         isLevelComplete = true;
         CombinePuzzle();
         levelCompletePopup.Appear(packID, levelID);
-
+        rateGamePopup.CheckCanAppear();
+        
         // Set level is completed
         PuzzleLoader.UpdateCompletedLevels(packID, levelID);
     }
