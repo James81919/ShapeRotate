@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class LevelManager : MonoBehaviour
 {
@@ -196,12 +196,26 @@ public class LevelManager : MonoBehaviour
             shapes[i].SetShapePosition(splitOffset);
         }
     }
-    private void CombinePuzzle()
+    private void CombinePuzzle(Action _onComplete)
     {
         for (int i = 0; i < shapes.Count; i++)
         {
             shapes[i].CompletePiece();
         }
+
+        StartCoroutine(WaitForPuzzleCombined(_onComplete));
+    }
+
+    private IEnumerator WaitForPuzzleCombined(Action _onComplete)
+    {
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            yield return new WaitUntil(() => shapes[i].isCombined);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        _onComplete();
     }
 
     public void CheckIsLevelComplete()
@@ -216,12 +230,13 @@ public class LevelManager : MonoBehaviour
         }
 
         isLevelComplete = true;
-        CombinePuzzle();
-        levelCompletePopup.Appear(packID, levelID);
-        rateGamePopup.CheckCanAppear();
+        CombinePuzzle(() => {
+            levelCompletePopup.Appear(packID, levelID);
+            rateGamePopup.CheckCanAppear();
         
-        // Set level is completed
-        PuzzleLoader.UpdateCompletedLevels(packID, levelID);
+            // Set level is completed
+            PuzzleLoader.UpdateCompletedLevels(packID, levelID);
+        });
     }
 
 

@@ -36,6 +36,7 @@ public class Shape : MonoBehaviour
 
     private Vector3 completePosition;
     [HideInInspector] public bool isComplete = false;
+    [HideInInspector] public bool isCombined = false;
 
     private void Start()
     {
@@ -148,7 +149,7 @@ public class Shape : MonoBehaviour
     {
         isComplete = true;
         DisableOutline();
-        LeanTween.move(rectTransform, completePosition, 0.25f).setEase(LeanTweenType.easeInBack);
+        LeanTween.move(rectTransform, completePosition, 0.25f).setEase(LeanTweenType.easeInBack).setOnComplete(() => { isCombined = true; });
     }
 
     public void LockPiece()
