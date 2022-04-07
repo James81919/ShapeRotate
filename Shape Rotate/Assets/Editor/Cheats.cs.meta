@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 06e020231c489f3479efd678703a3d6b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - ventureGamesLogo: {fileID: 2800000, guid: 626caa17de4cba94ca0feb6c4654b79a, type: 3}
+  - coinTexture: {fileID: 2800000, guid: 8e9cca30051a69e4c94bcf6680e22185, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
