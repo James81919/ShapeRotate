@@ -15612,10 +15612,10 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: ShapeRotated
-    clip: {fileID: 8300000, guid: e0f3e9f4ed94e2f4fb00e2b4e98ce404, type: 3}
-    volume: 1
-    minPitch: 1
-    maxPitch: 1
+    clip: {fileID: 8300000, guid: 5e5d1f86d1cef4e43af893f394942258, type: 3}
+    volume: 0.5
+    minPitch: 0.8
+    maxPitch: 0.9
     loop: 0
     source: {fileID: 0}
   - name: UI_ButtonClick
