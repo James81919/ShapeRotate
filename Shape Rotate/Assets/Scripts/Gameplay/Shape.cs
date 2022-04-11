@@ -112,6 +112,7 @@ public class Shape : MonoBehaviour
         if (!isRotating && !isComplete && !isLocked)
         {
             isRotating = true;
+            AudioManager.instance.PlaySFX("ShapeRotated");
             LeanTween.rotateAround(rectTransform, new Vector3(0, 0, 1), -90, 0.25f).setOnComplete(() =>
             {
                 isRotating = false;

@@ -14,6 +14,7 @@ public class BuyPackPopup : MonoBehaviour
     [Header("Manager References")]
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private CoinTransferManager coinTransferManager;
 
     private int packID, packCost;
 
@@ -29,7 +30,7 @@ public class BuyPackPopup : MonoBehaviour
 
         popupCanvas.enabled = true;
 
-        costText.text = packCost + "<sprite=0>";
+        costText.text = string.Format("{0:#,###0}", packCost) + "<sprite=0>";
 
         buyButton.interactable = CoinManager.GetCoinAmount() >= packCost;
     }
@@ -42,7 +43,7 @@ public class BuyPackPopup : MonoBehaviour
     // UI Buttons
     public void Button_Buy()
     {
-        if (CoinManager.SpendCoins(packCost))
+        if (coinTransferManager.SpendCoins(packCost))
         {
             PuzzleLoader.SetPackUnlocked(packID, true);
             Close();

@@ -213,6 +213,8 @@ public class LevelManager : MonoBehaviour
             yield return new WaitUntil(() => shapes[i].isCombined);
         }
 
+        AudioManager.instance.PlaySFX("PuzzleCombining");
+
         yield return new WaitForSeconds(0.5f);
 
         _onComplete();
