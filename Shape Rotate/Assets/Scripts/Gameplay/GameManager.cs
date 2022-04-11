@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         // Generate pack buttons
         GeneratePackButtons();
 
-        coinAmountText.text = CoinManager.GetCoinAmount() + "<sprite=0>";
+        coinAmountText.text = string.Format("{0:#,###0}", CoinManager.GetCoinAmount()) + "<sprite=0>";
     }
 
     public void OpenLevelScreen()

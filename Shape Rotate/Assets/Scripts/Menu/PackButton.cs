@@ -21,12 +21,13 @@ public class PackButton : MonoBehaviour
         PuzzlePack puzzlePack = _levelManager.puzzlePacks[_packID];
 
         packNameText.text = puzzlePack.packName;
+        buyPackText.text = "Buy " + string.Format("{0:#,###0}", puzzlePack.unlockCost) + "<sprite=0>";
 
         if (PuzzleLoader.LoadPuzzlePackSaveData(_packID).isUnlocked)
         {
             buyPackGO.SetActive(false);
             levelCountGO.SetActive(true);
-            levelCountText.text = PuzzleLoader.LoadPuzzlePackSaveData(_packID).currentLevel + " / " + puzzlePack.puzzles.Count;
+            levelCountText.text = string.Format("{0:#,###0}", PuzzleLoader.LoadPuzzlePackSaveData(_packID).currentLevel) + " / " + string.Format("{0:#,###0}", puzzlePack.puzzles.Count);
 
             GetComponent<Button>().onClick.AddListener(() => _gameManager.OpenLevelScreen(_packID));
         }

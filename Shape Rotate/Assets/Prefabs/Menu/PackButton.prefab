@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 3749121253756030564}
   - component: {fileID: 3749121253756030567}
   - component: {fileID: 7748258918846029010}
+  - component: {fileID: 1162526959004054328}
   m_Layer: 5
   m_Name: PackButton
   m_TagString: Untagged
@@ -531,6 +532,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &1162526959004054328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749121253756030562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a038e06d0603df43a327e05fc3452d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3749121253973902870
 GameObject:
   m_ObjectHideFlags: 0
