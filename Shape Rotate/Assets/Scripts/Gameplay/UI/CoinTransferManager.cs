@@ -22,6 +22,7 @@ public class CoinTransferManager : MonoBehaviour
     public bool SpendCoins(int _amount)
     {
         int startAmount = CoinManager.GetCoinAmount();
+        SetCoinAmountText(startAmount);
         if (CoinManager.SpendCoins(_amount))
         {
             coinText.text = startAmount + "<sprite=0>";
@@ -45,6 +46,7 @@ public class CoinTransferManager : MonoBehaviour
     public void AddCoins(int _amount)
     {
         int startAmount = CoinManager.GetCoinAmount();
+        SetCoinAmountText(startAmount);
         CoinManager.AddCoins(_amount);
 
         FadeIn(() =>
@@ -77,9 +79,13 @@ public class CoinTransferManager : MonoBehaviour
     private void UpdateCoinAmountText(int _startAmount, int _endAmount, Action _onComplete)
     {
         LeanTween.value(_startAmount, _endAmount, duration)
-            .setOnUpdate((float val) => { coinText.text = string.Format("{0:#,###0}", (int)val) + "<sprite=0>"; })
+            .setOnUpdate((float val) => SetCoinAmountText((int)val))
             .setOnComplete(() => {
                 _onComplete();
             });
+    }
+    private void SetCoinAmountText(int _amount)
+    {
+        coinText.text = string.Format("{0:#,###0}", _amount) + "<sprite=0>";
     }
 }

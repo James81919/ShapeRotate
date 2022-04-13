@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class Cheats : EditorWindow
 {
@@ -13,6 +14,7 @@ public class Cheats : EditorWindow
     #region TAB BOOLS
     private bool coinTabOpen = false;
     private bool levelTabOpen = false;
+    private bool tutorialTabOpen = false;
     #endregion
 
     Vector2 scrollPos;
@@ -43,12 +45,8 @@ public class Cheats : EditorWindow
         scrollPos = GUILayout.BeginScrollView(scrollPos);
 
         #region --- Coins Cheats ---
-        EditorGUILayout.Space();
-        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        DrawTitle("Coins", ref coinTabOpen);
-        if (coinTabOpen)
+        DrawTab("Coins", ref coinTabOpen, () =>
         {
-            DrawDivider(1, 0, 2, new Color(0.7f, 0.7f, 0.7f));
             GUILayout.Label(new GUIContent(CoinManager.GetCoinAmount().ToString(), AssetPreview.GetAssetPreview(coinTexture)), headingStyle);
             coins = EditorGUILayout.IntField("Coins To Add:", coins);
 
@@ -62,19 +60,14 @@ public class Cheats : EditorWindow
                 CoinManager.AddCoins(coins);
             }
             EditorGUILayout.Space(2);
-        }
-        EditorGUILayout.EndVertical();
+        });
         #endregion
 
         #region --- Level Cheats ---
-        EditorGUILayout.Space();
-        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        DrawTitle("Levels", ref levelTabOpen);
-        if (levelTabOpen)
+        DrawTab("Levels", ref levelTabOpen, () =>
         {
             puzzlePacks = PuzzleLoader.LoadPuzzlePacks();
 
-            DrawDivider(1, 0, 2, new Color(0.7f, 0.7f, 0.7f));
             for (int i = 0; i < puzzlePacks.Count; i++)
             {
                 DrawTitle("Pack " + i);
@@ -88,11 +81,32 @@ public class Cheats : EditorWindow
             }
 
             PuzzleLoader.SavePuzzlePacks(puzzlePacks);
-        }
-        EditorGUILayout.EndVertical();
+
+        });
+        #endregion
+
+        #region --- Tutorial Cheats ---
+        DrawTab("Tutorial", ref tutorialTabOpen, () =>
+        {
+            PlayerPrefs.SetInt("IsTutorialComplete", (EditorGUILayout.Toggle("Is Tutorial Complete", PlayerPrefs.GetInt("IsTutorialComplete", 0) > 0)) ? 1 : 0);
+        });
         #endregion
 
         GUILayout.EndScrollView();
+    }
+
+    private void DrawTab(string _title, ref bool _tabOpen, Action _content)
+    {
+        EditorGUILayout.Space();
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        DrawTitle(_title, ref _tabOpen);
+        if (_tabOpen)
+        {
+            DrawDivider(1, 0, 2, new Color(0.7f, 0.7f, 0.7f));
+
+            _content();
+        }
+        EditorGUILayout.EndVertical();
     }
 
     private void DrawDivider(int _thickness, int _paddingTop, int _paddingBottom)

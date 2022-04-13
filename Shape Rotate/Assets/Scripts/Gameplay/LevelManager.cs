@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     public BuyHintsPopup buyHintsPopup;
     public LevelCompletePopup levelCompletePopup;
     public RateGamePopup rateGamePopup;
+    public TutorialManager tutorialManager;
 
     [HideInInspector] public bool isLevelComplete;
 
@@ -84,6 +85,9 @@ public class LevelManager : MonoBehaviour
 
         gridIconManager.SetTileIcon(puzzle);
         UpdateHintCounter();
+
+        if (packID == 0 && levelID == 0)
+            tutorialManager.StartTutorial(shapes[0]);
     }
     public void ClearPuzzle()
     {
