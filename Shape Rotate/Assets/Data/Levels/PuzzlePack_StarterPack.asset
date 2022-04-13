@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PuzzlePack_StarterPack
   m_EditorClassIdentifier: 
   packName: Starter Pack
+  unlockCost: 0
+  isLocked: 0
   puzzles:
   - width: 4
     height: 4
@@ -24,7 +26,7 @@ MonoBehaviour:
       alternateCorrectRotations: 
     - anchorPointX: 0
       anchorPointY: -1
-      startRotation: 2
+      startRotation: 0
       alternateCorrectRotations: 
     isCompleted: 0
   - width: 4
