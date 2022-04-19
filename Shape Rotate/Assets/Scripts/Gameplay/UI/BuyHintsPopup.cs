@@ -27,11 +27,6 @@ public class BuyHintsPopup : Popup
         base.OpenPopup();
     }
 
-    public override void ClosePopup()
-    {
-        base.ClosePopup();
-    }
-
     // UI Buttons
     public void Button_BuyHints_5()
     {

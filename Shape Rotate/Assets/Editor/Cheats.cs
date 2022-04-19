@@ -15,6 +15,7 @@ public class Cheats : EditorWindow
     private bool coinTabOpen = false;
     private bool levelTabOpen = false;
     private bool tutorialTabOpen = false;
+    private bool colourPalettesTabOpen = false;
     #endregion
 
     Vector2 scrollPos;
@@ -89,6 +90,13 @@ public class Cheats : EditorWindow
         DrawTab("Tutorial", ref tutorialTabOpen, () =>
         {
             PlayerPrefs.SetInt("IsTutorialComplete", (EditorGUILayout.Toggle("Is Tutorial Complete", PlayerPrefs.GetInt("IsTutorialComplete", 0) > 0)) ? 1 : 0);
+        });
+        #endregion
+
+        #region --- Colour Palette Cheats ---
+        DrawTab("Colour Palettes", ref colourPalettesTabOpen, () =>
+        {
+            
         });
         #endregion
 
