@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResetGamePopup : Popup
 {
-    public LevelManager levelManager;
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private SettingsMenu settingsMenu;
 
     public void ResetAllProgress()
     {
@@ -14,8 +16,9 @@ public class ResetGamePopup : Popup
         // Reset levelsCompleted
         PuzzleLoader.DeletePackData();
         levelManager.GeneratePackData();
+        ColourPaletteManager.SetSelectedColourPalette(0);
 
         // Close popup
-        ClosePopup();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

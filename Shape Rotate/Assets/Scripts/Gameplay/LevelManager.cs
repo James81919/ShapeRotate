@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
 {
     public List<ColorPalette> colorPalettes;
     public List<PuzzlePack> puzzlePacks;
-    private int colorPalette = 0;
 
     public float splitOffset;
 
@@ -38,6 +37,11 @@ public class LevelManager : MonoBehaviour
     private float maxPuzzleSize = 300;
 
     [HideInInspector] public int packID, levelID;
+
+    private void Start()
+    {
+        ColourPaletteManager.SetNumberOfPalettes(colorPalettes.Count);
+    }
 
     public void GeneratePackData()
     {
@@ -182,13 +186,15 @@ public class LevelManager : MonoBehaviour
     }
     private void ChangeTileColour(GameObject _tile, int _value)
     {
+        int colorPaletteID = ColourPaletteManager.GetSelectedColourPalette();
+
         Color tileColor = new Color();
         switch (_value)
         {
-            case 1: tileColor = colorPalettes[colorPalette].color1; break;
-            case 2: tileColor = colorPalettes[colorPalette].color2; break;
-            case 3: tileColor = colorPalettes[colorPalette].color3; break;
-            case 4: tileColor = colorPalettes[colorPalette].color4; break;
+            case 1: tileColor = colorPalettes[colorPaletteID].color1; break;
+            case 2: tileColor = colorPalettes[colorPaletteID].color2; break;
+            case 3: tileColor = colorPalettes[colorPaletteID].color3; break;
+            case 4: tileColor = colorPalettes[colorPaletteID].color4; break;
         }
 
         _tile.GetComponent<Image>().color = tileColor;
