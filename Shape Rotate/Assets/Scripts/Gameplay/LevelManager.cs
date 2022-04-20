@@ -38,6 +38,11 @@ public class LevelManager : MonoBehaviour
 
     [HideInInspector] public int packID, levelID;
 
+    private void Start()
+    {
+        ColourPaletteManager.SetNumberOfPalettes(colorPalettes.Count);
+    }
+
     public void GeneratePackData()
     {
         if (PuzzleLoader.LoadPuzzlePacks() == null)

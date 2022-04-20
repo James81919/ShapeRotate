@@ -4,6 +4,15 @@ using UnityEngine;
 
 public static class ColourPaletteManager
 {
+    public static void SetNumberOfPalettes(int _num)
+    {
+        PlayerPrefs.SetInt("NumOfColourPalettes", _num);
+    }
+    public static int GetNumberOfPalettes()
+    {
+        return PlayerPrefs.GetInt("NumOfColourPalettes", 0);
+    }
+
     public static void SetColourPaletteUnlocked(int _id, bool _isUnlocked)
     {
         PlayerPrefs.SetInt("IsColourPaletteUnlocked_" + _id, _isUnlocked ? 1 : 0);

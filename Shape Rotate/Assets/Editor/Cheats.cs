@@ -96,7 +96,10 @@ public class Cheats : EditorWindow
         #region --- Colour Palette Cheats ---
         DrawTab("Colour Palettes", ref colourPalettesTabOpen, () =>
         {
-            
+            for (int i = 0; i < ColourPaletteManager.GetNumberOfPalettes(); i++)
+            {
+                ColourPaletteManager.SetColourPaletteUnlocked(i, EditorGUILayout.Toggle("Colour Palette " + i + " Unlocked", ColourPaletteManager.IsColourPaletteUnlocked(i)));
+            }
         });
         #endregion
 
