@@ -41,6 +41,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         ColourPaletteManager.SetNumberOfPalettes(colorPalettes.Count);
+        ColourPaletteManager.SetColourPaletteUnlocked(0, true);
+        ColourPaletteManager.SetColourPaletteUnlocked(1, true);
     }
 
     public void GeneratePackData()

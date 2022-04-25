@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f453aafdbb623344fb2d50ca65ca41f8, type: 3}
-  m_Name: ColorPalette_SpringClean
+  m_Name: ColorPalette_SpringTime
   m_EditorClassIdentifier: 
-  paletteName: Spring Clean
+  paletteName: Spring Time
   color1: {r: 0, g: 0.5754717, b: 0, a: 1}
   color2: {r: 0.7430861, g: 1, b: 0, a: 1}
   color3: {r: 0.21025512, g: 0.7830189, b: 0, a: 1}

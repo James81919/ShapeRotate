@@ -5559,6 +5559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542041351}
   - component: {fileID: 542041350}
+  - component: {fileID: 542041353}
   - component: {fileID: 542041349}
   - component: {fileID: 542041348}
   - component: {fileID: 542041352}
@@ -5612,19 +5613,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 542041349}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 932481238}
-        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
-        m_MethodName: Button_BuyHints_5
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &542041349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5695,6 +5684,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a038e06d0603df43a327e05fc3452d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &542041353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542041347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: com.venturegames.rotateit.5hints
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseComplete
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseFailed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &543963647
 GameObject:
   m_ObjectHideFlags: 0
@@ -9823,7 +9860,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932481237}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -10603,6 +10640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1056074901}
   - component: {fileID: 1056074904}
+  - component: {fileID: 1056074906}
   - component: {fileID: 1056074903}
   - component: {fileID: 1056074902}
   - component: {fileID: 1056074905}
@@ -10676,19 +10714,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1056074903}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 932481238}
-        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
-        m_MethodName: Button_BuyHints_20
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1056074903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10739,6 +10765,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a038e06d0603df43a327e05fc3452d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1056074906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056074900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: com.venturegames.rotateit.20hints
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseComplete
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseFailed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &1056365488
 GameObject:
   m_ObjectHideFlags: 0
@@ -12152,6 +12226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217852566}
   - component: {fileID: 1217852569}
+  - component: {fileID: 1217852571}
   - component: {fileID: 1217852568}
   - component: {fileID: 1217852567}
   - component: {fileID: 1217852570}
@@ -12225,19 +12300,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1217852568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 932481238}
-        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
-        m_MethodName: Button_BuyHints_100
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1217852568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12288,6 +12351,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a038e06d0603df43a327e05fc3452d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1217852571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217852565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: com.venturegames.rotateit.100hints
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseComplete
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 932481238}
+        m_TargetAssemblyTypeName: BuyHintsPopup, Assembly-CSharp
+        m_MethodName: OnPurchaseFailed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &1221678116
 GameObject:
   m_ObjectHideFlags: 0
