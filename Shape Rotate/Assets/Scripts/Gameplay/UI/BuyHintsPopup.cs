@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Purchasing;
 
 public class BuyHintsPopup : Popup
 {
@@ -14,6 +15,11 @@ public class BuyHintsPopup : Popup
     [SerializeField] private double videoAdDelay;
 
     private Timer rewardedVideoAdTimer;
+
+    // IAP item IDs
+    private string buy5HintsID = "com.venturegames.rotateit.5hints";
+    private string buy20HintsID = "com.venturegames.rotateit.20hints";
+    private string buy100HintsID = "com.venturegames.rotateit.100hints";
 
     public override void OnStart()
     {
@@ -28,21 +34,9 @@ public class BuyHintsPopup : Popup
     }
 
     // UI Buttons
-    public void Button_BuyHints_5()
+    public void BuyHints(int _hintAmount)
     {
-        HintManager.AddHints(5);
-        levelManager.UpdateHintCounter();
-    }
-
-    public void Button_BuyHints_20()
-    {
-        HintManager.AddHints(20);
-        levelManager.UpdateHintCounter();
-    }
-
-    public void Button_BuyHints_100()
-    {
-        HintManager.AddHints(100);
+        HintManager.AddHints(_hintAmount);
         levelManager.UpdateHintCounter();
     }
 
@@ -59,4 +53,28 @@ public class BuyHintsPopup : Popup
             });
         }
     }
+
+
+    #region IAP Functions
+    public void OnPurchaseComplete(Product _product)
+    {
+        if (_product.definition.id == buy5HintsID)
+        {
+            BuyHints(5);
+        }
+        else if (_product.definition.id == buy20HintsID)
+        {
+            BuyHints(20);
+        }
+        else if (_product.definition.id == buy100HintsID)
+        {
+            BuyHints(100);
+        }
+    }
+
+    public void OnPurchaseFailed(Product _product, PurchaseFailureReason _reason)
+    {
+        Debug.Log("Purchase of " + _product.definition.id + " failed due to " + _reason);
+    }
+    #endregion
 }
