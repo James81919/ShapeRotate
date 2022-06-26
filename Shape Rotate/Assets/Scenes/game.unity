@@ -10145,7 +10145,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932481237}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -12876,6 +12876,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2aff1a2abc0c2454f93088710c2de2b5, type: 2}
   - {fileID: 11400000, guid: 672d581ab369069419b3f2d707a5f12f, type: 2}
   puzzlePacks:
+  - {fileID: 11400000, guid: aec3f8c64ed565b49a5e2cc82a0ad6f6, type: 2}
   - {fileID: 11400000, guid: e0774c7784ca2954284b4129d54b5157, type: 2}
   - {fileID: 11400000, guid: 47b5e54d24b250941acf621da6f92cf9, type: 2}
   splitOffset: 225

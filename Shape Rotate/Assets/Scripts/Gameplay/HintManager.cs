@@ -9,43 +9,43 @@ public static class HintManager
 
     public static void UseHint(List<Shape> _shapeList)
     {
-        if (!CanUseHint())
-        {
-            return;
-        }
+        //if (!CanUseHint())
+        //{
+        //    return;
+        //}
 
-        Shape correctShape;
+        //Shape correctShape;
 
-        // Chooses shape to rotate
-        List<Shape> oneCorrectRotationShapes = new List<Shape>();
-        List<Shape> twoCorrectRotationShapes = new List<Shape>();
-        List<Shape> fourCorrectRotationShapes = new List<Shape>();
+        //// Chooses shape to rotate
+        //List<Shape> oneCorrectRotationShapes = new List<Shape>();
+        //List<Shape> twoCorrectRotationShapes = new List<Shape>();
+        //List<Shape> fourCorrectRotationShapes = new List<Shape>();
 
-        for (int i = 0; i < _shapeList.Count; i++)
-        {
-            if (!_shapeList[i].isCorrectRotation)
-            {
-                switch (_shapeList[i].alternateCorrectRotations.Count)
-                {
-                    case 0: oneCorrectRotationShapes.Add(_shapeList[i]); break;
-                    case 1: twoCorrectRotationShapes.Add(_shapeList[i]); break;
-                    case 3: fourCorrectRotationShapes.Add(_shapeList[i]); break;
-                }
-            }
-        }
+        //for (int i = 0; i < _shapeList.Count; i++)
+        //{
+        //    if (!_shapeList[i].isCorrectRotation)
+        //    {
+        //        switch (_shapeList[i].alternateCorrectRotations.Count)
+        //        {
+        //            case 0: oneCorrectRotationShapes.Add(_shapeList[i]); break;
+        //            case 1: twoCorrectRotationShapes.Add(_shapeList[i]); break;
+        //            case 3: fourCorrectRotationShapes.Add(_shapeList[i]); break;
+        //        }
+        //    }
+        //}
 
-        if (oneCorrectRotationShapes.Count > 0)
-            correctShape = oneCorrectRotationShapes[Random.Range(0, oneCorrectRotationShapes.Count)];
-        else if (twoCorrectRotationShapes.Count > 0)
-            correctShape = twoCorrectRotationShapes[Random.Range(0, twoCorrectRotationShapes.Count)];
-        else if (fourCorrectRotationShapes.Count > 0)
-            correctShape = fourCorrectRotationShapes[Random.Range(0, fourCorrectRotationShapes.Count)];
-        else
-            return;
+        //if (oneCorrectRotationShapes.Count > 0)
+        //    correctShape = oneCorrectRotationShapes[Random.Range(0, oneCorrectRotationShapes.Count)];
+        //else if (twoCorrectRotationShapes.Count > 0)
+        //    correctShape = twoCorrectRotationShapes[Random.Range(0, twoCorrectRotationShapes.Count)];
+        //else if (fourCorrectRotationShapes.Count > 0)
+        //    correctShape = fourCorrectRotationShapes[Random.Range(0, fourCorrectRotationShapes.Count)];
+        //else
+        //    return;
 
-        AddHints(-1);
+        //AddHints(-1);
 
-        correctShape.RotateToCorrectRotation();
+        //correctShape.RotateToCorrectRotation();
     }
 
     public static int GetHintsRemaining()

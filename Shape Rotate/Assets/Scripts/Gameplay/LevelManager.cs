@@ -103,6 +103,8 @@ public class LevelManager : MonoBehaviour
         }
         shapes = new List<Shape>();
         tiles = new List<GameObject>();
+
+        gridIconManager.ClearTileIcon();
     }
 
     private void CreatePuzzleGrid(PuzzleData _puzzle)
@@ -181,8 +183,81 @@ public class LevelManager : MonoBehaviour
                 ChangeTileColour(shapeTiles[t], p + 1);
             }
 
+            // Create tiles grid and check where shape starts and ends on grid
+            List<bool> tilesGrid = new List<bool>();
+            int startRowPos = _puzzle.width - 1, endRowPos = 0;
+            int startColumnPos = 0, endColumnPos = 0;
+            int emptyColumnsAtEnd = 0;
+            bool columnTilesFound = false;
+
+            int tileNum = 0;
+            for (int y = 0; y < _puzzle.height; y++)
+            {
+                bool isTileFound = false;
+                int startX = 0;
+                int emptySpacesAtEnd = 0;
+                for (int x = 0; x < _puzzle.width; x++)
+                {
+                    if (_puzzle.grid[tileNum] == p + 1)
+                    {
+                        isTileFound = true;
+                        emptySpacesAtEnd = 0;
+                        tilesGrid.Add(true);
+                    }
+                    else
+                    {
+                        if (!isTileFound) startX++;
+                        emptySpacesAtEnd++;
+                        tilesGrid.Add(false);
+                    }
+
+                    tileNum++;
+                }
+
+                // Update the start and end row pos
+                if (startX < startRowPos) startRowPos = startX;
+                if (_puzzle.width - 1 - emptySpacesAtEnd > endRowPos) endRowPos = _puzzle.width - 1 - emptySpacesAtEnd;
+
+                if (!isTileFound)
+                {
+                    if (!columnTilesFound)
+                        startColumnPos++;
+                    else
+                        emptyColumnsAtEnd++;
+                }
+                else
+                {
+                    columnTilesFound = true;
+                    emptyColumnsAtEnd = 0;
+                }
+            }
+
+            endColumnPos = _puzzle.height - 1 - emptyColumnsAtEnd;
+
+            // Snip start and
+            // end of the tilesGrid rows
+            List<bool> snippedGrid = new List<bool>();
+            tileNum = 0;
+            for (int y = 0; y < _puzzle.height; y++)
+            {
+                for (int x = 0; x < _puzzle.width; x++)
+                {
+                    if (y >= startColumnPos && y <= endColumnPos)
+                    {
+                        if (x >= startRowPos && x <= endRowPos)
+                        {
+                            snippedGrid.Add(tilesGrid[tileNum]);
+                        }
+                    }
+                    tileNum++;
+                }
+            }
+
+            // Create shape
+            int shapeWidth = endRowPos - startRowPos + 1;
+            int shapeHeight = endColumnPos - startColumnPos + 1;
             Shape s = shape.GetComponent<Shape>();
-            s.InitialiseShape(CheckIsLevelComplete, _puzzle.shapes[p]);
+            s.InitialiseShape(CheckIsLevelComplete, _puzzle.shapes[p], snippedGrid, shapeWidth, shapeHeight);
             shapes.Add(s);
         }
     }

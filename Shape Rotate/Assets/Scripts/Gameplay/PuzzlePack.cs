@@ -43,7 +43,6 @@ public class PuzzleShapeData
 
     // Rotation variables
     public RotationDirection startRotation; // 0, 1, 2, 3
-    public List<RotationDirection> alternateCorrectRotations;
 
     public PuzzleShapeData(Vector2 _anchorPoint, RotationDirection _startRotation)
     {
@@ -51,17 +50,5 @@ public class PuzzleShapeData
         anchorPointY = _anchorPoint.y;
 
         startRotation = _startRotation;
-
-        alternateCorrectRotations = new List<RotationDirection>();
-    }
-
-    public PuzzleShapeData(Vector2 _anchorPoint, RotationDirection _startRotation, List<RotationDirection> _alternateCorrectRotations)
-    {
-        anchorPointX = _anchorPoint.x;
-        anchorPointY = _anchorPoint.y;
-
-        startRotation = _startRotation;
-
-        alternateCorrectRotations = _alternateCorrectRotations;
     }
 }

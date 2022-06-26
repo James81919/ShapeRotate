@@ -8,12 +8,14 @@ public class PuzzlePackEditor : Editor
     int gridWidth, gridHeight;
     List<int> gridList = new List<int>();
 
+
     List<PuzzleShapeData> shapesList = new List<PuzzleShapeData>();
     int shapeListCount = 0;
-    List<int> shapesAlternateCorrectRotations = new List<int>();
     List<bool> isShapeElementTabsOpen = new List<bool>();
 
     int newPuzzleLevelID = 0;
+    int editingLevelID = 0;
+    bool isEditingLevel = false;
 
     PuzzlePack puzzlePack;
 
@@ -24,6 +26,19 @@ public class PuzzlePackEditor : Editor
         puzzlePack = (PuzzlePack)target;
 
         EditorGUILayout.BeginHorizontal();
+        editingLevelID = EditorGUILayout.IntField(editingLevelID);
+        if (GUILayout.Button("Edit Level"))
+        {
+            if (puzzlePack.puzzles.Count > editingLevelID)
+            {
+                isEditingLevel = true;
+                LoadPuzzle();
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.BeginHorizontal();
         isShapeListTabOpen = EditorGUILayout.Foldout(isShapeListTabOpen, "Shapes");
         shapeListCount = EditorGUILayout.IntField(shapeListCount);
         EditorGUILayout.EndHorizontal();
@@ -31,21 +46,11 @@ public class PuzzlePackEditor : Editor
         // Update size of shapes list
         while (shapesList.Count < shapeListCount)
         {
-            shapesList.Add(new PuzzleShapeData(new Vector2(0,0), RotationDirection.TOP));
+            shapesList.Add(new PuzzleShapeData(new Vector2(0, 0), RotationDirection.TOP));
         }
         while (shapesList.Count > shapeListCount)
         {
             shapesList.RemoveAt(shapesList.Count - 1);
-        }
-
-        // Update size of alternate correct rotations list
-        while (shapesAlternateCorrectRotations.Count < shapesList.Count)
-        {
-            shapesAlternateCorrectRotations.Add(0);
-        }
-        while (shapesAlternateCorrectRotations.Count > shapesList.Count)
-        {
-            shapesAlternateCorrectRotations.RemoveAt(shapesAlternateCorrectRotations.Count - 1);
         }
 
         // Update size of of is shape element tabs open list
@@ -71,27 +76,7 @@ public class PuzzlePackEditor : Editor
                     shapesList[i].anchorPointY = EditorGUILayout.FloatField("Anchor Point Y", shapesList[i].anchorPointY);
                     shapesList[i].startRotation = (RotationDirection)EditorGUILayout.EnumPopup("Start Rotation", shapesList[i].startRotation);
 
-                    EditorGUILayout.BeginVertical(GUI.skin.GetStyle("helpBox"));
-                    shapesAlternateCorrectRotations[i] = EditorGUILayout.IntField("Alternate Correct Rotations", shapesAlternateCorrectRotations[i]);
-
-                    // Update size of alternate correct rotations list size
-                    while (shapesList[i].alternateCorrectRotations.Count < shapesAlternateCorrectRotations[i])
-                    {
-                        shapesList[i].alternateCorrectRotations.Add(new RotationDirection());
-                    }
-                    while (shapesList[i].alternateCorrectRotations.Count > shapesAlternateCorrectRotations[i])
-                    {
-                        shapesList[i].alternateCorrectRotations.RemoveAt(shapesList[i].alternateCorrectRotations.Count - 1);
-                    }
-
-                    for (int r = 0; r < shapesList[i].alternateCorrectRotations.Count; r++)
-                    {
-                        shapesList[i].alternateCorrectRotations[r] = (RotationDirection)EditorGUILayout.EnumPopup("Correct Rotation " + r, shapesList[i].alternateCorrectRotations[r]);
-                    }
-                    EditorGUILayout.EndVertical();
-
                     EditorGUILayout.Space();
-
                 }
             }
         }
@@ -128,7 +113,7 @@ public class PuzzlePackEditor : Editor
                     }
                 }
                 GUI.backgroundColor = Color.white;
-                
+
                 EditorGUILayout.EndHorizontal();
             }
 
@@ -150,26 +135,42 @@ public class PuzzlePackEditor : Editor
                     EditorGUILayout.LabelField("Puzzle doesn't exist");
 
                     EditorGUILayout.Space();
-                    EditorGUILayout.BeginHorizontal();
-                    newPuzzleLevelID = EditorGUILayout.IntSlider(newPuzzleLevelID, 1, puzzlePack.puzzles.Count);
-                    if (GUILayout.Button("Add Puzzle By Level Number"))
+                    if (isEditingLevel)
                     {
-                        AddPuzzle(newPuzzleLevelID - 1);
-                        newPuzzleLevelID++;
+                        if (GUILayout.Button("Save"))
+                        {
+                            AddPuzzle(editingLevelID, true);
+                            isEditingLevel = false;
+                        }
+                        if (GUILayout.Button("Deselect"))
+                        {
+                            isEditingLevel = false;
+                        }
                     }
-                    EditorGUILayout.EndHorizontal();
-
-
-                    EditorGUILayout.Space();
-                    if (GUILayout.Button("Add Puzzle"))
+                    else
                     {
-                        AddPuzzle();
+                        EditorGUILayout.BeginHorizontal();
+                        newPuzzleLevelID = EditorGUILayout.IntSlider(newPuzzleLevelID, 1, puzzlePack.puzzles.Count);
+                        if (GUILayout.Button("Add Puzzle By Level Number"))
+                        {
+                            AddPuzzle(newPuzzleLevelID - 1);
+                            newPuzzleLevelID++;
+                        }
+                        EditorGUILayout.EndHorizontal();
+
+
+                        EditorGUILayout.Space();
+                        if (GUILayout.Button("Add Puzzle"))
+                        {
+                            AddPuzzle();
+                        }
                     }
                 }
             }
         }
 
         EditorGUILayout.Space();
+        
         base.OnInspectorGUI();
     }
 
@@ -203,36 +204,68 @@ public class PuzzlePackEditor : Editor
         }
     }
 
-    private void AddPuzzle(int _levelID = -1)
+    private void AddPuzzle(int _levelID = -1, bool _override = false)
     {
         if (puzzlePack == null)
             return;
 
         // Create and add puzzle to puzzlepack
-
         List<PuzzleShapeData> newShapesList = new List<PuzzleShapeData>();
         for (int i = 0; i < shapesList.Count; i++)
         {
-            List<RotationDirection> correctRotations = new List<RotationDirection>();
-            for (int r = 0; r < shapesList[i].alternateCorrectRotations.Count; r++)
-                correctRotations.Add(shapesList[i].alternateCorrectRotations[r]);
-
             PuzzleShapeData s = new PuzzleShapeData(
                 new Vector2(shapesList[i].anchorPointX, shapesList[i].anchorPointY),
-                shapesList[i].startRotation,
-                correctRotations);
+                shapesList[i].startRotation);
 
             newShapesList.Add(s);
         }
 
         PuzzleData puzzle = new PuzzleData(gridWidth, gridHeight, gridList, newShapesList);
-        if (_levelID >= 0)
-            puzzlePack.puzzles.Insert(_levelID, puzzle);
+        if (_override)
+        {
+            puzzlePack.puzzles[_levelID] = puzzle;
+        }
         else
-            puzzlePack.puzzles.Add(puzzle);
+        {
+            if (_levelID >= 0)
+                puzzlePack.puzzles.Insert(_levelID, puzzle);
+            else
+                puzzlePack.puzzles.Add(puzzle);
+
+        }
 
         // Reset local variables
         gridList = new List<int>();
+    }
+
+    private void LoadPuzzle()
+    {
+        if (puzzlePack == null)
+            return;
+
+        if (puzzlePack.puzzles.Count <= editingLevelID)
+            return;
+
+        // Get existing puzzle from puzzlepack
+        PuzzleData puzzle = puzzlePack.puzzles[editingLevelID];
+
+        gridWidth = puzzle.width;
+        gridHeight = puzzle.height;
+
+        gridList = new List<int>();
+        for (int g = 0; g < puzzle.grid.Count; g++)
+        {
+            gridList.Add(puzzle.grid[g]);
+        }
+
+        shapesList = new List<PuzzleShapeData>();
+        for (int i = 0; i < puzzle.shapes.Count; i++)
+        {
+            PuzzleShapeData newShape = new PuzzleShapeData(new Vector2(puzzle.shapes[i].anchorPointX, puzzle.shapes[i].anchorPointY), puzzle.shapes[i].startRotation);
+            shapesList.Add(newShape);
+        }
+
+        shapeListCount = puzzle.shapes.Count;
     }
 
     private bool DoesPuzzleExist()
@@ -244,7 +277,7 @@ public class PuzzlePackEditor : Editor
             if (DoListsMatch(pack.puzzles[i].grid, gridList))
             {
                 // Puzzle Exists
-                return true;
+                return !isEditingLevel || (isEditingLevel && editingLevelID != i);
             }
         }
 
